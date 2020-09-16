@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+
+<title>Home</title>
+<script>
+    $(document).ready(function(){
+      	var date_input=$('input[name="date"]'); //our date input has the name "date"
+      	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      	var options={
+       		format: 'dd/mm/yyyy',
+       		container: container,
+       		todayHighlight: true,
+       		autoclose: true,
+       		orientation: 'top'
+      	};
+      	date_input.datepicker(options);
+    });
+   
+	</script>
+
+</head>
+
+<body>
+	<div th:insert="@{navbar.html}"></div>
+	<br/>
+	<div class="container">
+		<form action="#" th:action="@{/passengers/searchResult}" method="post">
+			
+			<div class="form-row">
+			<div class="form-group col-md-6">
+					<b><label for="exampleInputEmail1">Select From: </label></b><br/>
+					<select name="from" th:object="${from}">
+						<option value="">Source city</option>
+						<option th:each="test : ${loc}" th:value="${test.id}"
+							th:text="${test.city.name}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group col-md-6">
+				<b><label for="exampleInputEmail1">Select To : </label></b><br/>
+					<select name="to" th:object="${to}">
+						<option value="">Destination City</option>
+						<option th:each="test : ${loc}" th:value="${test.id}"
+							th:text="${test.city.name}"></option>
+					</select>
+				</div>
+				</div>
+				
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				<b><label for="exampleInputEmail1">Select Date: </label></b><br/>
+					<div class="bootstrap-iso">
+						<div class="container-fluid">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="form-group">
+									<div class="row">
+										<input style="width: 130px" class="form-control"
+											th:object="${date}" id="date" name="date" autocomplete="off"
+											placeholder="Date" type="text" />
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-md-6">
+					<p> </p><br/>
+					<p>
+						<input type="submit" class="btn btn-primary" value="Submit" />
+					</p>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>
+
+
+
+
+
+

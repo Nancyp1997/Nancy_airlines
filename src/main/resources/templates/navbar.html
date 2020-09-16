@@ -1,0 +1,56 @@
+<!-- https://docs.kiwi.com/#header-searching-flights-and-connections-with-kiwi.com-(search-api) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">NAirlines</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarSupportedContent"
+		aria-controls="navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="/">HOME
+					<span class="sr-only">(current)</span>
+			</a></li>
+			<!--    <li class="nav-item">
+        <a class="nav-link" href="/passengers/list">List Passengers</a>
+      </li> -->
+			<li class="nav-item active"><a class="nav-link"
+				href="/passengers/search">SEARCH</a></li>
+
+			
+		</ul>
+
+	</div>
+
+
+	<div class="navbar-collapse collapse w-90 order-3 dual-collapse2">
+		<ul class="navbar-nav ml-auto">
+		<li class="nav-item active"><a class="nav-link" href="/myprofile">
+					MY PROFILE</a></li>
+			<li class="nav-item active">
+				<form th:action="@{/logout}" method="POST" id="logg">
+
+					<input type="submit" style="display: none" value="Logout" />
+
+				</form> 
+				<a class="nav-link" id="logout" href="#">LOGOUT</a>
+				<script>
+				var alink = document.getElementById("logout");
+				alink.onclick=showFoo;
+				
+				function showFoo(){
+					var logoutForm = document.getElementById("logg");
+					logoutForm.submit();
+				}
+				
+				</script>
+			</li>
+
+		</ul>
+	</div>
+
+
+
+</nav>

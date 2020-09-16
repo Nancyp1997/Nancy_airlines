@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<title>Home</title>
+</head>
+<body>
+<div th:insert="@{navbar.html}"></div>
+
+	<div class="container">
+	
+	<a class="btn btn-dark" href="/passengers/search">Back</a>
+	
+		<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th> Departure </th><th> Arrival </th><th> Duration </th><th> Price </th><th> Routes </th><th> Book </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="trip : ${trips}">
+				<td th:text="${trip.dTimeUTC}" />	
+				<td th:text="${trip.aTimeUTC}" />	
+				<td th:text="${trip.flyDuration}" />
+				<td th:text="€+${trip.price}" />
+				<td th:text="${trip.routeString()}"/>
+				<td> 
+					<form th:action="@{/passengers/book}">
+						<!-- <input type="text" th:name="participant" th:value="${trip.dTimeUTC}"/>-->
+						<input type="hidden" th:name="dtime" th:value="${trip.dTimeUTC}"/>
+						<input type="hidden" th:name="atime" th:value="${trip.aTimeUTC}"/>
+						<input type="hidden" th:name="fromCity" th:value="${trip.flyFrom}"/>
+						<input type="hidden" th:name="toCity" th:value="${trip.flyTo}"/>
+						<input type="hidden" th:name="cost" th:value="${trip.price}"/>
+						<input type="submit" class="btn btn-success" value="Book"/>
+					</form>
+					
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	</div>			
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Bookings Page</title>
+</head>
+
+<body>
+<div th:insert="@{navbar}"></div>
+<div class="container">
+<hr>
+	<h3 style="text-align:center">Hi <span sec:authentication="name"></span> !! Here are your trip details</h3>
+	<hr>
+
+
+		<form class="shadow-lg" style="padding:10px; margin: 10px;" th:action="@{/passengers/confirmBooking}" th:object="${booking}">
+			
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			<b><label for="exampleInputEmail1">Name on ticket</label></b>
+			<input type="text" class="form-control" name="userName"
+				th:value="*{userName}" readonly /><br /> 
+			</div>
+			<div class="form-group col-md-6">
+			<b><label for="exampleInputEmail1">Price(** without taxes)</label></b>
+			<input type="text" class="form-control" name="cost"
+				th:value="*{cost}" readonly /><br /> 
+			</div>
+			</div>
+			
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			<b><label for="exampleInputEmail1">Traveling from </label></b>
+			<input type="text" class="form-control" name="from"
+				th:value="*{from}" readonly /><br /> 
+			</div>
+			
+			<div class="form-group col-md-6">
+			<b><label for="exampleInputEmail1">Traveling to </label></b>
+			<input type="text"
+				class="form-control" name="to" th:value="*{to}" readonly /><br />
+			</div>	 
+			</div>
+			
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			<b><label for="exampleInputEmail1">Departure Date & Time </label></b>
+			<input type="text" class="form-control" name="dTime"
+				th:value="*{dTime}" readonly /><br />
+			</div>
+			<div class="form-group col-md-6">
+			<b><label for="exampleInputEmail1">Arrival Date & Time </label></b>
+			<input type="text"
+				class="form-control" name="aTime" th:value="*{aTime}" readonly /><br />
+			</div>
+			</div>
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			
+			</div>
+			<div class="form-group col-md-6">
+			
+			<input class="btn btn-danger" type="submit" />
+			<a class="btn btn-secondary"  href="/" >Cancel</a>
+			</div>
+			</div>
+			
+			
+			
+			
+		</form>
+
+	</div>
+	
+	
+	
+	<hr class="featurette-divider">
+	<footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>© 2017-2020 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  </footer>
+	
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

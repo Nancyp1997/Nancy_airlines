@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<title>Profile</title>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div th:insert="@{navbar}"></div>
+	<div class="container">
+		<h2>My Profile</h2>
+		<hr>
+		<form>
+			<div class="row">
+			<div class="col">
+			<img id="output" height="140" width="140" style="border-radius: 50%"
+				onclick="uploadImag()" src="/images/propic.jpg" /> <input
+				type="file" accept="image/*" id="myfile" style="display: none"
+				onchange="loadFile(event)" />
+			</div>
+			<div class="col"></div>
+			<div class="col">
+			<p></p>
+			<p>Member since 2020</p>
+			</div>
+			</div>
+		</form>
+		<script>
+			function uploadImag() {
+				var roundImg = document.getElementById("myfile");
+				roundImg.click();
+
+			}
+
+			var loadFile = function(event) {
+				var image = document.getElementById('output');
+				image.src = URL.createObjectURL(event.target.files[0]);
+			};
+		</script>
+		<hr>
+		<!-- 
+		<input type="file">
+		<img id="myImg" src="blob:null/3d56a3c7-6e3e-4c29-a494-41cfb875344e" alt="your image" height="100" width="100">
+		<script type="text/javascript">
+			window.addEventListener('load', function() {
+				document.querySelector('input[type="file"]').addEventListener(
+						'change', function() {
+							if (this.files && this.files[0]) {
+								var img = document.querySelector('img'); // $('img')[0]
+								img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+								img.onload = imageIsLoaded;
+							}
+						});
+			});
+
+			function imageIsLoaded() {
+				alert(this.src); // blob url
+				// update width and height ...
+			}
+		</script>
+
+		<hr>
+	 -->
+		<!-- display user name and role -->
+
+		<div>
+			<!--User: <span sec:authentication="name"></span>
+		
+		
+		<br><br>
+		Role(s): <span sec:authentication="principal.authorities"></span>
+		<br><br>
+
+		 Check for login error 																	
+		<div th:if="${session.user}" >
+			<p th:text="'First name: ' + ${session.user.firstName} + ', Last name: ' + ${session.user.lastName} + ', Email: ' + ${session.user.email}"></p>
+		</div>
+		
+		<!-- First Name: <input type="text" th:placeholder='${session.user.firstName}' readonly/><br/>
+		Last Name: <input type="text" th:placeholder='${session.user.lastName}' readonly/><br/>
+		Email: <input type="text" th:placeholder='${session.user.email}' readonly/><br/> -->
+
+			<div id="accordion">
+				<div class="card">
+
+
+					<button class="card-header w-100  btn btn-light"
+						data-toggle="collapse" data-target="#collapseOne"
+						aria-expanded="false" aria-controls="collapseOne">
+						<b>MY DETAILS</b></button>
+
+
+
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+						data-parent="#accordion">
+						<div class="card-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputEmail1">User Name </label> <input
+										type="text" class="form-control" id="userName"
+										th:placeholder="${session.user.userName}" readonly />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">First Name </label> <input
+										type="text" class="form-control" id="firstName"
+										th:placeholder="${session.user.firstName}" readonly />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Last Name </label> <input
+										type="text" class="form-control" id="lastName"
+										aria-describedby="emailHelp"
+										th:placeholder="${session.user.lastName}" readonly />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Email </label> <input
+										type="email" class="form-control" id="email"
+										aria-describedby="emailHelp"
+										th:placeholder="${session.user.email}" readonly /> <small
+										id="emailHelp" class="form-text text-muted">We'll
+										never share your email with anyone else.</small>
+								</div>
+
+
+
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="card">
+
+
+					<button class="card-header w-100  btn btn-light collapsed"
+						data-toggle="collapse" data-target="#collapseTwo"
+						aria-expanded="false" onclick="" aria-controls="collapseTwo">
+						<b>MY TRIPS</b>
+					</button>
+
+
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+						data-parent="#accordion">
+						<div class="card-body">
+
+							<div th:if="${mytrips ne null}">
+								<table class="table table-bordered table-striped">
+									<thead class="thead-dark">
+										<tr>
+											<th>ID</th>
+											<th>From</th>
+											<th>To</th>
+											<th>ATime</th>
+											<th>DTime</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="tempEmployee : ${mytrips}">
+											<td th:text="${tempEmployee.id}" />
+											<td th:text="${tempEmployee.from}" />
+											<td th:text="${tempEmployee.to}" />
+											<td th:text="${tempEmployee.aTime}" />
+											<td th:text="${tempEmployee.dTime}" />
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div th:if="${tripsSize ne null}">
+								<b><p class="text-center">No trips yet</p></b>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="card">
+
+
+					<button class="card-header w-100  btn btn-light collapsed"
+						data-toggle="collapse" data-target="#collapseThree"
+						aria-expanded="false" aria-controls="collapseThree"><b>CHANGE
+						PASSWORD</b></button>
+
+
+					<div id="collapseThree" class="collapse"
+						aria-labelledby="headingThree" data-parent="#accordion">
+						<div class="card-body">
+
+							<form action="#" th:action="@{/passengers/changePassword}">
+								<!-- Enter old password -->
+								<div class="form-group">
+									<label for="exampleInputEmail1">Old password </label> <input
+										type="password" th:name="oldPassword" class="form-control"
+										id="oldPassword"></input>
+								</div>
+
+								<!-- Enter new password -->
+								<div class="form-group">
+									<label for="exampleInputEmail1">New password </label> <input
+										type="password" th:name="newPassword" class="form-control"
+										id="newPassword"></input>
+								</div>
+
+								<!-- Confirm new password -->
+								<div class="form-group">
+									<label for="exampleInputEmail1">Confirm New password </label> <input
+										type="password" th:name="confirmNewPassword"
+										class="form-control" id="confirmNewPassword"></input>
+								</div>
+
+
+								<input type="submit" class="btn btn-info btn" value="Submit" />
+
+
+							</form>
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+		<div sec:authorize="hasRole('ROLE_MANAGER')">
+
+			<!-- Add a link to point to /leaders ... this is for the managers -->
+
+			<p>
+				<a th:href="@{/leaders}">Leadership Meeting</a> (Only for Manager
+				peeps)
+			</p>
+
+		</div>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+
+			<!-- Add a link to point to /systems ... this is for the admins -->
+
+			<p>
+				<a th:href="@{/systems}">IT Systems Meeting</a> (Only for Admin
+				peeps)
+			</p>
+
+		</div>
+
+		<hr>
+
+
+
+
+		<br /> <br />
+
+		<!-- Add a logout button 
+	
+	<form th:action="@{/logout}" 
+			   method="POST">
+	
+		<input type="submit" value="Logout" />
+	
+	</form>	
+	-->
+	</div>
+	<hr class="featurette-divider">
+	<footer class="container">
+		<p class="float-right">
+			<a href="#">Back to top</a>
+		</p>
+		<p>
+			© 2017-2020 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a>
+		</p>
+	</footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
