@@ -10,8 +10,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EntityScan(basePackages = {"com.nancy.Airline.entity"})
 public class AirlineApplication {
 
+	
+
 	public static void main(String[] args) {
 		SpringApplication.run(AirlineApplication.class, args);
 	}
+	
 
 }

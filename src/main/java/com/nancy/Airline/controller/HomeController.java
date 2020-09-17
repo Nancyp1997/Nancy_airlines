@@ -34,9 +34,6 @@ public class HomeController {
 	@Autowired
 	private UserService us;
 	
-	
-	
-	
 	private Map<String,String> cityCode;
 	
 	@GetMapping("/")
