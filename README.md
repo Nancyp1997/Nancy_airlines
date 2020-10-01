@@ -7,6 +7,7 @@ Sample airlines management website implemented using Springboot, which lists the
 - Frontend: HTML,CSS,Bootstrap.
 - Backend: Springboot, Hibernate, Spring security, Thymeleaf.
 - Database: MySQL.
+- Used external REST API for flights data and Jackson-databind to convert JSON to POJO.
 
 
 ## Steps to run the project:
